@@ -17,7 +17,11 @@ Here's how to do it:
 
 * `adb push` or `dd` the rootfs onto your userdata partition (if you use dd then you will likely want to resize the filesystem, some distros do this automagically but some don't)
 
-* Add `root=/dev/mmcblkXpY` (TODO: document UFS syntax) where X is the SDHCI device and Y is the partition number, to your kernel cmdline, either via defconfig or DTS
+* Add a root parameter to your kernel cmdline, either via defconfig or DTS:
+
+eMMC: `root=/dev/mmcblk[0-9]p[0-9]+` (ex. /dev/mmcblk1p76 on XA2)
+
+UFS: `root=/dev/sd[a-z][0-9]+` (ex. /dev/sda1; just like the SATA drives on your PC)
 
 * Boot and keep your fingers crossed :)
 ```
